@@ -7,24 +7,26 @@ using System.Threading.Tasks;
 
 namespace DotnetApi.Models
 {
-    public interface ISong
+    public interface IBandMember
     {
-        Guid Id { get; }
-        string Name { get; set; }
-        Guid? AlbumId { get; set; }
-        Album Album { get; set; }
+        Guid Id { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
         Guid ArtistId { get; set; }
         Artist Artist { get; set; }
     }
 
-    public class Song : ISong
+    public class BandMember : IBandMember
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
 
         [Required]
         public Guid ArtistId { get; set; }
@@ -32,9 +34,5 @@ namespace DotnetApi.Models
         [ForeignKey("ArtistId")]
         public virtual Artist Artist { get; set; }
 
-        public Guid? AlbumId { get; set; }
-
-        [ForeignKey("AlbumId")]
-        public virtual Album Album { get; set; }
     }
 }

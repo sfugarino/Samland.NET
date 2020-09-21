@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotnetApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DotnetApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class SongController : ControllerBase
     {
         // GET: api/<SongController>
         [HttpGet]
-        public IAsyncEnumerable<string> Get()
+        public IEnumerable<string> Get()
         {
             var values = new string[] { "value1", "value2" };
 

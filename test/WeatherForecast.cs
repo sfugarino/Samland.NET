@@ -1,6 +1,6 @@
 using System;
 
-namespace DotnetApi
+namespace test
 {
     public class WeatherForecast
     {
