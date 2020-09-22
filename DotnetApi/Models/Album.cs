@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DotnetApi.Models
@@ -15,6 +16,8 @@ namespace DotnetApi.Models
         string ImageUrl { get; set; }
         List<Song> Songs { get; set; }
         Guid ArtistId { get; set; }
+
+        
         Artist Artist { get; set; }
     }
 
@@ -39,6 +42,7 @@ namespace DotnetApi.Models
         public Guid ArtistId { get; set; }
 
         [ForeignKey("ArtistId")]
+        [JsonIgnore]
         public virtual Artist Artist { get; set; }
     }
 }

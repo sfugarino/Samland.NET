@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotnetApi.Models;
+using DotnetApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,18 +15,26 @@ namespace DotnetApi.Controllers
     [ApiController]
     public class ArtistController : ControllerBase
     {
+
+        private readonly IMusicRepository repository;
+
+        public ArtistController(IMusicRepository repository)
+        {
+            this.repository = repository;
+        }
+
         // GET: api/<ArtistController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Artist>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await repository.GetArtists();
         }
 
         // GET api/<ArtistController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Artist> Get(Guid id)
         {
-            return "value";
+            return await repository.GetArtist(id);
         }
 
         // POST api/<ArtistController>

@@ -15,7 +15,7 @@ namespace DotnetApi.Models
         string ImageUrl { get; set; }
         List<BandMember> Members { get; set; }
         List<Album>Albums { get; set; }
-        List<Song> Songs { get; set; }
+        // List<Song> Songs { get; set; }
     }
 
     public class Artist : IArtist
@@ -36,6 +36,6 @@ namespace DotnetApi.Models
 
         public List<Album> Albums { get; set; }
 
-        public List<Song> Songs { get; set; }
+        // public List<Song> Songs { get; set; }
     }
 }
