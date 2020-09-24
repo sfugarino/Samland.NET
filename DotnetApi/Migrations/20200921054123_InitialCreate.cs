@@ -8,7 +8,7 @@ namespace DotnetApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Artist",
+                name: "Artists",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -121,7 +121,7 @@ namespace DotnetApi.Migrations
                 name: "Albums");
 
             migrationBuilder.DropTable(
-                name: "Artist");
+                name: "Artists");
         }
     }
 }

@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 
 namespace DotnetApi.Repositories
 {
-    public class MusicRepository : IMusicRepository, IDisposable
+    public class ArtistRepository : IArtistRepository, IDisposable
     {
         private MusicDbContext context;
 
-        public MusicRepository(MusicDbContext context)
+        public ArtistRepository(MusicDbContext context)
         {
             this.context = context;
         }
 
-        public async Task<IEnumerable<Artist>> GetArtists()
+        public async Task<IEnumerable<Artist>> Get()
         {
-            return await context.Artist.ToListAsync();
+            return await context.Artists.ToListAsync();
         }
 
-        public async Task<Artist> GetArtist(Guid id)
+        public async Task<Artist> GetById(Guid id)
         {
-            var artist = await context.Artist
-               .Include(a => a.Albums)
-                .ThenInclude(al => al.Songs)
-               .SingleOrDefaultAsync(a => a.Id == id);
+            var artist = await context.Artists
+            .Include(a => a.Members)
+            .Include(a => a.Albums).ThenInclude(al => ((Album)al).Songs)
+            .SingleOrDefaultAsync(a => a.Id == id);
 
             return artist;
         }

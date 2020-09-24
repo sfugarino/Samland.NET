@@ -16,9 +16,9 @@ namespace DotnetApi.Controllers
     public class ArtistController : ControllerBase
     {
 
-        private readonly IMusicRepository repository;
+        private readonly IArtistRepository repository;
 
-        public ArtistController(IMusicRepository repository)
+        public ArtistController(IArtistRepository repository)
         {
             this.repository = repository;
         }
@@ -27,14 +27,14 @@ namespace DotnetApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Artist>> Get()
         {
-            return await repository.GetArtists();
+            return await repository.Get();
         }
 
         // GET api/<ArtistController>/5
         [HttpGet("{id}")]
         public async Task<Artist> Get(Guid id)
         {
-            return await repository.GetArtist(id);
+            return await repository.GetById(id);
         }
 
         // POST api/<ArtistController>

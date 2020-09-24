@@ -10,7 +10,7 @@ namespace DotnetApi.Contexts
 {
     public class MusicDbContext : DbContext
     {
-        public DbSet<Artist> Artist { get; set; }
+        public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<BandMember> BandMembers { get; set; }
@@ -39,25 +39,41 @@ namespace DotnetApi.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Album>()
-                .HasOne(al => al.Artist)
-                .WithMany(ar => ar.Albums)
-                .HasForeignKey(al => al.ArtistId);
+            builder.Entity<Artist>()
+                .Property(a => a.Id)
+                .HasDefaultValueSql("newid()");
 
-            //builder.Entity<Song>()
-            //    .HasOne<Artist>(s => s.Artist)
-            //    .WithMany(ar => ar.Songs)
-            //    .HasForeignKey(s => s.ArtistId);
+            builder.Entity<Album>()
+                .Property(a => a.Id)
+                .HasDefaultValueSql("newid()");
 
             builder.Entity<Song>()
-                .HasOne<Album>(s => s.Album)
-                .WithMany(a => a.Songs)
-                .HasForeignKey(s => s.AlbumId);
+                .Property(a => a.Id)
+                .HasDefaultValueSql("newid()");
 
             builder.Entity<BandMember>()
-                .HasOne<Artist>(a => a.Artist)
-                .WithMany(b => b.Members)
+                .Property(a => a.Id)
+                .HasDefaultValueSql("newid()");
+
+            builder.Entity<Artist>()
+                .HasMany<Album>(ar => ar.Albums)
+                .WithOne(al => al.Artist)
+                .HasForeignKey(al => al.ArtistId);
+
+            builder.Entity<Artist>()
+                .HasMany<Song>(a => a.Songs)
+                .WithOne(s => s.Artist)
+                .HasForeignKey(s => s.ArtistId);
+
+            builder.Entity<Artist>()
+                .HasMany<BandMember>(a => a.Members)
+                .WithOne(b => b.Artist)
                 .HasForeignKey(b => b.ArtistId);
+
+            builder.Entity<Album>()
+                .HasMany<Song>(a => a.Songs)
+                .WithOne(s => s.Album)
+                .HasForeignKey(s => s.AlbumId);
         }
 
     }

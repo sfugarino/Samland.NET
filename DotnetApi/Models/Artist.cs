@@ -36,6 +36,6 @@ namespace DotnetApi.Models
 
         public List<Album> Albums { get; set; }
 
-        // public List<Song> Songs { get; set; }
+        public List<Song> Songs { get; set; }
     }
 }

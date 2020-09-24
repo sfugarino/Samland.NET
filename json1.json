@@ -1,0 +1,32 @@
+{
+  "id": "70e2e8d4-e418-4c34-9f0c-f4c3e45c407b",
+  "name": "Yes",
+  "genre": 1,
+  "imageUrl": "assets/images/yes.png",
+  "members": null,
+  "albums": [
+    {
+      "id": "66fb86b7-e5ad-4992-acab-b7634028af5b",
+      "name": "Fragile",
+      "releaseDate": "1972-01-04T00:00:00",
+      "imageUrl": "assets/images/fragile.jpg",
+      "songs": [
+        {
+          "id": "0089c5b3-6b97-491c-bbee-85e675ac8d4f",
+          "name": "Roundabout",
+          "artistId": "70e2e8d4-e418-4c34-9f0c-f4c3e45c407b",
+          "albumId": "66fb86b7-e5ad-4992-acab-b7634028af5b"
+        }
+      ],
+      "artistId": "70e2e8d4-e418-4c34-9f0c-f4c3e45c407b"
+    }
+  ],
+  "songs": [
+    {
+      "id": "0089c5b3-6b97-491c-bbee-85e675ac8d4f",
+      "name": "Roundabout",
+      "artistId": "70e2e8d4-e418-4c34-9f0c-f4c3e45c407b",
+      "albumId": "66fb86b7-e5ad-4992-acab-b7634028af5b"
+    }
+  ]
+}

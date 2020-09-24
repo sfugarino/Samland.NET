@@ -20,7 +20,7 @@
     "DotnetApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/artist",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

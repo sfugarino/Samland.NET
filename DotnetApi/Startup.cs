@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotnetApi.Contexts;
+using DotnetApi.Models;
 using DotnetApi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace DotnetApi
 {
@@ -38,7 +40,13 @@ namespace DotnetApi
                 options => options.UseSqlServer(connectionString)
             );
 
-            services.AddTransient<IMusicRepository, MusicRepository>();
+            services.AddTransient<IArtistRepository, ArtistRepository>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Samland Music API", Version = "v1" });
+            });
 
         }
 
@@ -58,7 +66,7 @@ namespace DotnetApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Samland Music API V1");
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "swagger";
             });
 
             app.UseRouting();
